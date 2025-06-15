@@ -17,9 +17,11 @@ jobs:
 
       - run: pip install natsort
 
+      - name: Run generator in debug mode
+        run: python3 gen_tz.py --json
+
       - name: Generate timezones.json and csv
         run: |
-          mkdir -p public
           python3 ./gen-tz.py --json > timezones.json
           python3 ./gen-tz.py --csv > timezones.csv
 
@@ -27,6 +29,9 @@ jobs:
         run: |
           gzip -f timezones.json
           gzip -f timezones.csv
+
+      - name: Show contents of current directory
+        run: ls -alh
 
       - name: Commit and push all at once
         run: |
