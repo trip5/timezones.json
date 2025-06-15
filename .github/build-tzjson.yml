@@ -1,0 +1,37 @@
+name: Generate and Gzip Timezones
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - run: pip install natsort
+
+      - name: Generate timezones.json and csv
+        run: |
+          mkdir -p public
+          python3 ./gen_tz.py --json > public/timezones.json
+          python3 ./gen_tz.py --csv > public/timezones.csv
+
+      - name: Gzip outputs
+        run: |
+          gzip -f public/timezones.json
+          gzip -f public/timezones.csv
+
+      - name: Commit and push all at once
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add public/timezones.json public/timezones.json.gz public/timezones.csv public/timezones.csv.gz
+          git commit -m "Update timezones JSON and CSV files"
+          git push
