@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import argparse
@@ -25,7 +25,6 @@ def get_tz_string(timezone):
     data = open(ZONES_DIR + timezone, "rb").read().split(b"\n")[-2]
     return data.decode("utf-8")
 
-
 def make_timezones_dict():
     result = {}
     for timezone in ZONES:
@@ -37,6 +36,7 @@ def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
     grouped = {}
     for zone, posix in timezones_dict.items():
         grouped.setdefault(posix, []).append(zone)
+
     result = {}
     for posix, zones in grouped.items():
         if len(zones) == 1:
@@ -58,19 +58,17 @@ def print_csv(timezones_dict):
     for name, tz in timezones_dict.items():
         print('"{}","{}"'.format(name, tz))
 
-
 def print_json(timezones_dict):
     json.dump(timezones_dict, sys.stdout, indent=0, sort_keys=False, separators=(",", ":"))
 
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generates POSIX timezones strings reading data from " + ZONES_DIR)
+    parser = argparse.ArgumentParser(description="Generate POSIX timezones data")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-j", "--json", action="store_true", help="outputs JSON")
-    group.add_argument("-c", "--csv", action="store_true", help="outputs CSV")
-    group.add_argument("-mj", "--minimal_json", action="store_true", help="outputs minimal de-duplicated JSON")
-    group.add_argument("-mc", "--minimal_csv", action="store_true", help="outputs minimal de-duplicated CSV")
-    data = parser.parse_args()
+    group.add_argument("--json", action="store_true", help="outputs JSON")
+    group.add_argument("--csv", action="store_true", help="outputs CSV")
+    group.add_argument("--minimal-json", action="store_true", help="outputs deduplicated minimal JSON")
+    group.add_argument("--minimal-csv", action="store_true", help="outputs deduplicated minimal CSV")
+    args = parser.parse_args()
 
     timezones = make_timezones_dict()
 
