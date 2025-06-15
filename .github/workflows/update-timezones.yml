@@ -62,8 +62,8 @@ jobs:
         run: |
           python3 ./gen-tz.py --json > timezones.json
           python3 ./gen-tz.py --csv > timezones.csv
-          python3 ./gen-tz.py --minimal-json > timezones.min.json
-          python3 ./gen-tz.py --minimal-csv > timezones.min.csv
+          python3 ./gen-tz.py --minimal_json > timezones.min.json
+          python3 ./gen-tz.py --minimal_csv > timezones.min.csv
 
       - name: Gzip outputs
         run: |
