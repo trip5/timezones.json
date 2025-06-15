@@ -20,8 +20,8 @@ jobs:
       - name: Generate timezones.json and csv
         run: |
           mkdir -p public
-          python3 ./gen_tz.py --json > public/timezones.json
-          python3 ./gen_tz.py --csv > public/timezones.csv
+          python3 ./gen-tz.py --json > public/timezones.json
+          python3 ./gen-tz.py --csv > public/timezones.csv
 
       - name: Gzip outputs
         run: |
