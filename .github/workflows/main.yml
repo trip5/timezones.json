@@ -27,8 +27,8 @@ jobs:
 
       - name: Gzip outputs
         run: |
-          gzip -f timezones.json
-          gzip -f timezones.csv
+          gzip -fk timezones.json
+          gzip -fk timezones.csv
 
       - name: Show contents of current directory
         run: ls -alh
