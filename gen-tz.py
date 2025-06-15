@@ -35,11 +35,13 @@ def make_timezones_dict():
 def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
     from collections import defaultdict
     region_groups = defaultdict(lambda: defaultdict(list))
-    # Group by region and then by POSIX string
+    # Group by "region path" (everything before last slash) and POSIX string
     for zone, posix in timezones_dict.items():
-        if '/' not in zone:
-            continue  # Skip entries like "UTC" or "GMT"
-        region, name = zone.split('/', 1)
+        parts = zone.split("/")
+        if len(parts) < 2:
+            continue  # skip zones without at least one slash
+        region = "/".join(parts[:-1])
+        name = parts[-1]
         region_groups[region][posix].append(name)
     result = {}
     for region, posix_map in region_groups.items():
@@ -48,6 +50,7 @@ def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
                 key = f"{region}/{names[0]}"
             else:
                 merged = "-".join(names)
+                # Reserve space for region + "/" when trimming
                 max_name_len = max_key_len - len(region) - 1
                 if len(merged) > max_name_len:
                     merged = merged[:max_name_len].rstrip('-')
