@@ -32,7 +32,7 @@ def make_timezones_dict():
         result[timezone] = get_tz_string(timezone)
     return result
 
-def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
+def make_minimal_timezones_dict(timezones_dict):
     from collections import defaultdict
     region_groups = defaultdict(lambda: defaultdict(list))
     # Group by "region path" (everything before last slash) and POSIX string
@@ -50,10 +50,6 @@ def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
                 key = f"{region}/{names[0]}"
             else:
                 merged = "-".join(names)
-                # Reserve space for region + "/" when trimming
-                max_name_len = max_key_len - len(region) - 1
-                if len(merged) > max_name_len:
-                    merged = merged[:max_name_len].rstrip('-')
                 key = f"{region}/{merged}"
             result[key] = posix
     return result
