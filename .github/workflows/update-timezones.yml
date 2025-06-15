@@ -1,0 +1,80 @@
+name: Update Timezones (if needed)
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Run Sunday at midnight
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch latest tzdb release filename
+        id: fetch_latest
+        run: |
+          latest=$(curl -s ftp://ftp.iana.org/tz/releases/ | grep -oE 'tzdata[0-9]{4}[a-z]\.tar\.gz' | sort -V | tail -1)
+          echo "Latest release file: $latest"
+          version=$(echo $latest | grep -oE '[0-9]{4}[a-z]')
+          echo "Latest version: $version"
+          echo "::set-output name=version::$version"
+
+      - name: Read current tzdb version
+        id: read_version
+        run: |
+          current=$(cat tzdb_version.txt)
+          echo "Current version: $current"
+          echo "::set-output name=current::$current"
+
+      - name: Check if tzdb update needed
+        id: check_update
+        run: |
+          if [ "${{ steps.fetch_latest.outputs.version }}" = "${{ steps.read_version.outputs.current }}" ]; then
+            echo "Up-to-date, no update needed."
+            echo "::set-output name=update_needed::false"
+          else
+            echo "New version available, update needed."
+            echo "::set-output name=update_needed::true"
+          fi
+
+      - name: Stop job if no update needed
+        if: steps.check_update.outputs.update_needed == 'false'
+        run: |
+          echo "No update necessary, exiting."
+          exit 0
+
+      - name: Update tzdb_version.txt
+        run: echo "${{ steps.fetch_latest.outputs.version }}" > tzdb_version.txt
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - run: pip install natsort
+
+      - name: Run generator in debug mode
+        run: python3 ./gen-tz.py --json
+
+      - name: Generate timezones.json and csv
+        run: |
+          python3 ./gen-tz.py --json > timezones.json
+          python3 ./gen-tz.py --csv > timezones.csv
+
+      - name: Gzip outputs
+        run: |
+          gzip -fk timezones.json
+          gzip -fk timezones.csv
+
+      - name: Show contents of current directory
+        run: ls -alh
+
+      - name: Commit and push all at once
+        env:
+          TZDB_VERSION: ${{ steps.fetch_latest.outputs.version }}
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz tzdb_version.txt
+          git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
+          git push
