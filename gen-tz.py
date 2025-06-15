@@ -33,25 +33,26 @@ def make_timezones_dict():
     return result
 
 def make_minimal_timezones_dict(timezones_dict, max_key_len=40):
-    grouped = {}
+    from collections import defaultdict
+    region_groups = defaultdict(lambda: defaultdict(list))
+    # Group by region and then by POSIX string
     for zone, posix in timezones_dict.items():
-        grouped.setdefault(posix, []).append(zone)
-
+        if '/' not in zone:
+            continue  # Skip entries like "UTC" or "GMT"
+        region, name = zone.split('/', 1)
+        region_groups[region][posix].append(name)
     result = {}
-    for posix, zones in grouped.items():
-        if len(zones) == 1:
-            result[zones[0]] = posix
-        else:
-            # Group by shared region prefix
-            regions = [z.split('/', 1) for z in zones if '/' in z]
-            if not regions:
-                continue
-            region = regions[0][0]
-            names = [r[1] for r in regions if r[0] == region]
-            combined = f"{region}/{'-'.join(names)}"
-            if len(combined) > max_key_len:
-                combined = combined[:max_key_len].rstrip('-')
-            result[combined] = posix
+    for region, posix_map in region_groups.items():
+        for posix, names in posix_map.items():
+            if len(names) == 1:
+                key = f"{region}/{names[0]}"
+            else:
+                merged = "-".join(names)
+                max_name_len = max_key_len - len(region) - 1
+                if len(merged) > max_name_len:
+                    merged = merged[:max_name_len].rstrip('-')
+                key = f"{region}/{merged}"
+            result[key] = posix
     return result
 
 def print_csv(timezones_dict):
