@@ -69,7 +69,7 @@ if __name__ == "__main__":
     group.add_argument("-j", "--json", action="store_true", help="outputs JSON")
     group.add_argument("-c", "--csv", action="store_true", help="outputs CSV")
     group.add_argument("-mj", "--minimal_json", action="store_true", help="outputs minimal de-duplicated JSON")
-    group.add_argument("-mc", "--minimal_jcsv", action="store_true", help="outputs minimal de-duplicated CSV")
+    group.add_argument("-mc", "--minimal_csv", action="store_true", help="outputs minimal de-duplicated CSV")
     data = parser.parse_args()
 
     timezones = make_timezones_dict()
