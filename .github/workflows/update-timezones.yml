@@ -55,9 +55,6 @@ jobs:
 
       - run: pip install natsort
 
-      - name: Run generator in debug mode
-        run: python3 ./gen-tz.py --json
-
       - name: Generate timezones.json and csv
         run: |
           python3 ./gen-tz.py --json > timezones.json
