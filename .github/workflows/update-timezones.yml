@@ -62,11 +62,15 @@ jobs:
         run: |
           python3 ./gen-tz.py --json > timezones.json
           python3 ./gen-tz.py --csv > timezones.csv
+          python3 ./gen-tz.py --minimal-json > timezones.min.json
+          python3 ./gen-tz.py --minimal-csv > timezones.min.csv
 
       - name: Gzip outputs
         run: |
           gzip -fk timezones.json
           gzip -fk timezones.csv
+          gzip -fk timezones.min.json
+          gzip -fk timezones.min.csv
 
       - name: Show contents of current directory
         run: ls -alh
@@ -81,6 +85,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz tzdb_version.txt
+          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.json.min.gz timezones.min.csv timezones.min.csv.gz tzdb_version.txt
           git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
           git push
