@@ -1,8 +1,6 @@
 
 # timezones.json
 
-Generates POSIX timezones strings reading data from `/usr/share/zoneinfo`
-
 Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is available
 
 * always up-to-date
@@ -12,5 +10,6 @@ Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is 
 * compresses to gzip files
 
 Credit to dmfilipenko for the original script: https://github.com/dmfilipenko/timezones.json
+
 Credit to vshymanskyy for the update to use natsort: https://github.com/vshymanskyy/posix_tz_db
 
