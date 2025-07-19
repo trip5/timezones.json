@@ -85,3 +85,16 @@ jobs:
           git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz tzdb_version.txt
           git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
           git push
+
+      # Create a GitHub release and upload all assets
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.fetch_latest.outputs.version }}
+          name: Release ${{ steps.fetch_latest.outputs.version }}
+          files: |
+            *.gz
+            *.json
+            *.csv
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
