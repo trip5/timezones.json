@@ -49,7 +49,8 @@ def make_minimal_timezones_dict(timezones_dict):
             if len(names) == 1:
                 key = f"{region}/{names[0]}"
             else:
-                merged = "-".join(names)
+                # Only use first and last name to keep keys shorter
+                merged = f"{names[0]}-{names[-1]}"
                 key = f"{region}/{merged}"
             result[key] = posix
     return result
