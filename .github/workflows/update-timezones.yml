@@ -57,7 +57,10 @@ jobs:
         run: |
           cd /tmp
           wget ftp://ftp.iana.org/tz/releases/tzdata${{ steps.fetch_latest.outputs.version }}.tar.gz
-          sudo tar -xzf tzdata${{ steps.fetch_latest.outputs.version }}.tar.gz -C /usr/share/zoneinfo --strip-components=0
+          mkdir -p tzdata
+          tar -xzf tzdata${{ steps.fetch_latest.outputs.version }}.tar.gz -C tzdata
+          # Compile and install the timezone data
+          sudo zic -d /usr/share/zoneinfo tzdata/africa tzdata/antarctica tzdata/asia tzdata/australasia tzdata/europe tzdata/northamerica tzdata/southamerica tzdata/etcetera tzdata/backward
           echo "Installed tzdb version: ${{ steps.fetch_latest.outputs.version }}"
 
       - name: Generate timezones.json and csv
