@@ -51,6 +51,15 @@ jobs:
         if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: pip install natsort
 
+      # Download and install the new tzdb version
+      - name: Download and install tzdb
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
+        run: |
+          cd /tmp
+          wget ftp://ftp.iana.org/tz/releases/tzdata${{ steps.fetch_latest.outputs.version }}.tar.gz
+          sudo tar -xzf tzdata${{ steps.fetch_latest.outputs.version }}.tar.gz -C /usr/share/zoneinfo --strip-components=0
+          echo "Installed tzdb version: ${{ steps.fetch_latest.outputs.version }}"
+
       - name: Generate timezones.json and csv
         if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: |
