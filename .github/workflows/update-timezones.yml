@@ -41,21 +41,18 @@ jobs:
             echo "update_needed=true" >> $GITHUB_OUTPUT
           fi
 
-      # Skip the rest if no update needed
-      - name: Stop if no update needed
-        if: ${{ steps.check_update.outputs.update_needed == 'false' }}
-        run: |
-          echo "No update required. Exiting."
-          exit 0
-
-      # Proceed with environment setup and generation
+      # Proceed with environment setup and generation only if update is needed
       - uses: actions/setup-python@v5
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         with:
           python-version: '3.x'
 
-      - run: pip install natsort
+      - name: Install dependencies
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
+        run: pip install natsort
 
       - name: Generate timezones.json and csv
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: |
           python3 ./gen-tz.py --json > timezones.json
           python3 ./gen-tz.py --csv > timezones.csv
@@ -63,6 +60,7 @@ jobs:
           python3 ./gen-tz.py --minimal-csv > timezones.min.csv
 
       - name: Gzip outputs
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: |
           gzip -fk timezones.json
           gzip -fk timezones.csv
@@ -70,24 +68,37 @@ jobs:
           gzip -fk timezones.min.csv
 
       - name: Show contents of current directory
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: ls -alh
+
+      # Verify files were generated
+      - name: Verify generated files
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
+        run: |
+          echo "Checking for generated files..."
+          ls -lh timezones.json timezones.csv timezones.min.json timezones.min.csv
+          ls -lh timezones.json.gz timezones.csv.gz timezones.min.json.gz timezones.min.csv.gz
+          echo "All files present!"
 
       # Update tzdb_version.txt with latest version
       - name: Update tzdb_version.txt
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: echo "${{ steps.fetch_latest.outputs.version }}" > tzdb_version.txt
 
       - name: Commit and push all at once
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         env:
           TZDB_VERSION: ${{ steps.fetch_latest.outputs.version }}
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
           git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz tzdb_version.txt
-          git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
+          git diff --staged --quiet || git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
           git push
 
       # Create a GitHub release and upload all assets
       - name: Create Release
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.fetch_latest.outputs.version }}
