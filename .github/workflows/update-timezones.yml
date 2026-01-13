@@ -105,7 +105,7 @@ jobs:
           echo "#     time_id: sntp_time      # ID of your main time component (required)" >> timezones_options.yaml
           echo "#     rtc_time_id: rtc_time   # ID of your RTC time component (optional)" >> timezones_options.yaml
           echo "#   packages:" >> timezones_options.yaml
-          echo "#     - !include timezones-options.yaml" >> timezones_options.yaml
+          echo "#     - !include timezones_options.yaml" >> timezones_options.yaml
           echo "" >> timezones_options.yaml
           echo "# The POSIX timezone string is also stored in global 'timezones_option' (persists across reboots)" >> timezones_options.yaml
           echo "" >> timezones_options.yaml

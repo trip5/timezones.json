@@ -6,7 +6,7 @@
 #     time_id: sntp_time      # ID of your main time component (required)
 #     rtc_time_id: rtc_time   # ID of your RTC time component (optional)
 #   packages:
-#     - !include timezones-options.yaml
+#     - !include timezones_options.yaml
 
 # The POSIX timezone string is also stored in global 'timezones_option' (persists across reboots)
 
