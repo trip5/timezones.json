@@ -1,0 +1,1646 @@
+# ESPHome Timezone Selector Package
+# Auto-generated from tzdb 2025c
+# Download this file and place it in your ESPHome config directory
+# Include in your ESPHome config with:
+#   substitutions:
+#     time_id: sntp_time      # ID of your main time component (required)
+#     rtc_time_id: rtc_time   # ID of your RTC time component (optional)
+#   packages:
+#     - !include timezones-options.yaml
+
+# The POSIX timezone string is also stored in global 'timezones_option' (persists across reboots)
+
+globals:
+  - id: timezones_option
+    type: std::string
+    restore_value: true
+    initial_value: '"UTC0"'
+
+select:
+  - platform: template
+    name: "Timezone"
+    id: timezone_select
+    optimistic: true
+    options:
+      - "Africa/Abidjan-Timbuktu"
+      - "Africa/Addis_Ababa-Nairobi"
+      - "Africa/Algiers-Tunis"
+      - "Africa/Bangui-Porto-Novo"
+      - "Africa/Blantyre-Windhoek"
+      - "Africa/Cairo"
+      - "Africa/Casablanca-El_Aaiun"
+      - "Africa/Ceuta"
+      - "Africa/Johannesburg-Mbabane"
+      - "Africa/Tripoli"
+      - "America/Adak-Atka"
+      - "America/Anchorage-Yakutat"
+      - "America/Anguilla-Virgin"
+      - "America/Araguaina-Sao_Paulo"
+      - "America/Atikokan-Panama"
+      - "America/Bahia_Banderas-Tegucigalpa"
+      - "America/Boa_Vista-Porto_Velho"
+      - "America/Bogota-Rio_Branco"
+      - "America/Boise-Yellowknife"
+      - "America/Chicago-Winnipeg"
+      - "America/Creston-Whitehorse"
+      - "America/Danmarkshavn"
+      - "America/Detroit-Toronto"
+      - "America/Ensenada-Vancouver"
+      - "America/Glace_Bay-Thule"
+      - "America/Godthab-Scoresbysund"
+      - "America/Havana"
+      - "America/Miquelon"
+      - "America/Noronha"
+      - "America/Santiago"
+      - "America/St_Johns"
+      - "America/Argentina/Buenos_Aires-Ushuaia"
+      - "America/Indiana/Indianapolis-Winamac"
+      - "America/Indiana/Knox-Tell_City"
+      - "America/Kentucky/Louisville-Monticello"
+      - "America/North_Dakota/Beulah-New_Salem"
+      - "Antarctica/Casey"
+      - "Antarctica/Davis"
+      - "Antarctica/DumontDUrville"
+      - "Antarctica/Macquarie"
+      - "Antarctica/Mawson-Vostok"
+      - "Antarctica/McMurdo-South_Pole"
+      - "Antarctica/Palmer-Rothera"
+      - "Antarctica/Syowa"
+      - "Antarctica/Troll"
+      - "Arctic/Longyearbyen"
+      - "Asia/Aden-Riyadh"
+      - "Asia/Almaty-Yekaterinburg"
+      - "Asia/Anadyr-Kamchatka"
+      - "Asia/Baku-Yerevan"
+      - "Asia/Bangkok-Vientiane"
+      - "Asia/Beirut"
+      - "Asia/Bishkek-Urumqi"
+      - "Asia/Brunei-Ulan_Bator"
+      - "Asia/Calcutta-Kolkata"
+      - "Asia/Chita-Yakutsk"
+      - "Asia/Chongqing-Taipei"
+      - "Asia/Colombo"
+      - "Asia/Famagusta-Nicosia"
+      - "Asia/Gaza-Hebron"
+      - "Asia/Hong_Kong"
+      - "Asia/Jakarta-Pontianak"
+      - "Asia/Jayapura"
+      - "Asia/Jerusalem-Tel_Aviv"
+      - "Asia/Kabul"
+      - "Asia/Karachi"
+      - "Asia/Kathmandu-Katmandu"
+      - "Asia/Magadan-Srednekolymsk"
+      - "Asia/Makassar-Ujung_Pandang"
+      - "Asia/Manila"
+      - "Asia/Pyongyang-Seoul"
+      - "Asia/Rangoon-Yangon"
+      - "Asia/Tehran"
+      - "Asia/Tokyo"
+      - "Asia/Ust-Nera-Vladivostok"
+      - "Atlantic/Azores"
+      - "Atlantic/Bermuda"
+      - "Atlantic/Canary-Madeira"
+      - "Atlantic/Cape_Verde"
+      - "Atlantic/Jan_Mayen"
+      - "Atlantic/Reykjavik-St_Helena"
+      - "Atlantic/South_Georgia"
+      - "Atlantic/Stanley"
+      - "Australia/ACT-Victoria"
+      - "Australia/Adelaide-Yancowinna"
+      - "Australia/Brisbane-Queensland"
+      - "Australia/Darwin-North"
+      - "Australia/Eucla"
+      - "Australia/LHI-Lord_Howe"
+      - "Australia/Perth-West"
+      - "Brazil/Acre"
+      - "Brazil/DeNoronha"
+      - "Brazil/East"
+      - "Brazil/West"
+      - "Canada/Atlantic"
+      - "Canada/Central"
+      - "Canada/Eastern"
+      - "Canada/Mountain"
+      - "Canada/Newfoundland"
+      - "Canada/Pacific"
+      - "Canada/Saskatchewan"
+      - "Canada/Yukon"
+      - "Chile/Continental"
+      - "Chile/EasterIsland"
+      - "Europe/Amsterdam-Zurich"
+      - "Europe/Astrakhan-Ulyanovsk"
+      - "Europe/Athens-Zaporozhye"
+      - "Europe/Belfast-London"
+      - "Europe/Chisinau-Tiraspol"
+      - "Europe/Dublin"
+      - "Europe/Istanbul-Minsk"
+      - "Europe/Kaliningrad"
+      - "Europe/Kirov-Volgograd"
+      - "Europe/Lisbon"
+      - "Indian/Antananarivo-Mayotte"
+      - "Indian/Chagos"
+      - "Indian/Christmas"
+      - "Indian/Cocos"
+      - "Indian/Kerguelen-Maldives"
+      - "Indian/Mahe-Reunion"
+      - "Mexico/BajaNorte"
+      - "Mexico/BajaSur"
+      - "Mexico/General"
+      - "Pacific/Apia-Tongatapu"
+      - "Pacific/Auckland"
+      - "Pacific/Bougainville-Ponape"
+      - "Pacific/Chatham"
+      - "Pacific/Chuuk-Yap"
+      - "Pacific/Easter"
+      - "Pacific/Fiji-Wallis"
+      - "Pacific/Galapagos"
+      - "Pacific/Gambier"
+      - "Pacific/Guam-Saipan"
+      - "Pacific/Honolulu-Johnston"
+      - "Pacific/Kiritimati"
+      - "Pacific/Marquesas"
+      - "Pacific/Midway-Samoa"
+      - "Pacific/Niue"
+      - "Pacific/Norfolk"
+      - "Pacific/Palau"
+      - "Pacific/Pitcairn"
+      - "Pacific/Rarotonga-Tahiti"
+      - "US/Alaska"
+      - "US/Aleutian"
+      - "US/Arizona"
+      - "US/Central-Indiana-Starke"
+      - "US/East-Indiana-Michigan"
+      - "US/Hawaii"
+      - "US/Mountain"
+      - "US/Pacific"
+      - "US/Samoa"
+      - "Etc/GMT-Greenwich"
+      - "Etc/GMT-14"
+      - "Etc/GMT-13"
+      - "Etc/GMT-12"
+      - "Etc/GMT-11"
+      - "Etc/GMT-10"
+      - "Etc/GMT-9"
+      - "Etc/GMT-8"
+      - "Etc/GMT-7"
+      - "Etc/GMT-6"
+      - "Etc/GMT-5"
+      - "Etc/GMT-4"
+      - "Etc/GMT-3"
+      - "Etc/GMT-2"
+      - "Etc/GMT-1"
+      - "Etc/GMT+1"
+      - "Etc/GMT+2"
+      - "Etc/GMT+3"
+      - "Etc/GMT+4"
+      - "Etc/GMT+5"
+      - "Etc/GMT+6"
+      - "Etc/GMT+7"
+      - "Etc/GMT+8"
+      - "Etc/GMT+9"
+      - "Etc/GMT+10"
+      - "Etc/GMT+11"
+      - "Etc/GMT+12"
+      - "Etc/UCT-Zulu"
+    on_value:
+      then:
+        - lambda: |-
+            if (x == "Africa/Abidjan-Timbuktu") {
+              id(timezones_option) = "GMT0";
+              id(${time_id})->set_timezone("GMT0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("GMT0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Addis_Ababa-Nairobi") {
+              id(timezones_option) = "EAT-3";
+              id(${time_id})->set_timezone("EAT-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EAT-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Algiers-Tunis") {
+              id(timezones_option) = "CET-1";
+              id(${time_id})->set_timezone("CET-1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CET-1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Bangui-Porto-Novo") {
+              id(timezones_option) = "WAT-1";
+              id(${time_id})->set_timezone("WAT-1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WAT-1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Blantyre-Windhoek") {
+              id(timezones_option) = "CAT-2";
+              id(${time_id})->set_timezone("CAT-2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CAT-2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Cairo") {
+              id(timezones_option) = "EET-2EEST,M4.5.5/0,M10.5.4/24";
+              id(${time_id})->set_timezone("EET-2EEST,M4.5.5/0,M10.5.4/24");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M4.5.5/0,M10.5.4/24");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Casablanca-El_Aaiun") {
+              id(timezones_option) = "<+01>-1";
+              id(${time_id})->set_timezone("<+01>-1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+01>-1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Ceuta") {
+              id(timezones_option) = "CET-1CEST,M3.5.0,M10.5.0/3";
+              id(${time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Johannesburg-Mbabane") {
+              id(timezones_option) = "SAST-2";
+              id(${time_id})->set_timezone("SAST-2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("SAST-2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Africa/Tripoli") {
+              id(timezones_option) = "EET-2";
+              id(${time_id})->set_timezone("EET-2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Adak-Atka") {
+              id(timezones_option) = "HST10HDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("HST10HDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("HST10HDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Anchorage-Yakutat") {
+              id(timezones_option) = "AKST9AKDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("AKST9AKDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AKST9AKDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Anguilla-Virgin") {
+              id(timezones_option) = "AST4";
+              id(${time_id})->set_timezone("AST4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AST4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Araguaina-Sao_Paulo") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Atikokan-Panama") {
+              id(timezones_option) = "EST5";
+              id(${time_id})->set_timezone("EST5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Bahia_Banderas-Tegucigalpa") {
+              id(timezones_option) = "CST6";
+              id(${time_id})->set_timezone("CST6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Boa_Vista-Porto_Velho") {
+              id(timezones_option) = "<-04>4";
+              id(${time_id})->set_timezone("<-04>4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-04>4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Bogota-Rio_Branco") {
+              id(timezones_option) = "<-05>5";
+              id(${time_id})->set_timezone("<-05>5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-05>5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Boise-Yellowknife") {
+              id(timezones_option) = "MST7MDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Chicago-Winnipeg") {
+              id(timezones_option) = "CST6CDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Creston-Whitehorse") {
+              id(timezones_option) = "MST7";
+              id(${time_id})->set_timezone("MST7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Danmarkshavn") {
+              id(timezones_option) = "GMT0";
+              id(${time_id})->set_timezone("GMT0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("GMT0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Detroit-Toronto") {
+              id(timezones_option) = "EST5EDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Ensenada-Vancouver") {
+              id(timezones_option) = "PST8PDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Glace_Bay-Thule") {
+              id(timezones_option) = "AST4ADT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Godthab-Scoresbysund") {
+              id(timezones_option) = "<-02>2<-01>,M3.5.0/-1,M10.5.0/0";
+              id(${time_id})->set_timezone("<-02>2<-01>,M3.5.0/-1,M10.5.0/0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-02>2<-01>,M3.5.0/-1,M10.5.0/0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Havana") {
+              id(timezones_option) = "CST5CDT,M3.2.0/0,M11.1.0/1";
+              id(${time_id})->set_timezone("CST5CDT,M3.2.0/0,M11.1.0/1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST5CDT,M3.2.0/0,M11.1.0/1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Miquelon") {
+              id(timezones_option) = "<-03>3<-02>,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("<-03>3<-02>,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3<-02>,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Noronha") {
+              id(timezones_option) = "<-02>2";
+              id(${time_id})->set_timezone("<-02>2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-02>2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Santiago") {
+              id(timezones_option) = "<-04>4<-03>,M9.1.6/24,M4.1.6/24";
+              id(${time_id})->set_timezone("<-04>4<-03>,M9.1.6/24,M4.1.6/24");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-04>4<-03>,M9.1.6/24,M4.1.6/24");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/St_Johns") {
+              id(timezones_option) = "NST3:30NDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("NST3:30NDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("NST3:30NDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Argentina/Buenos_Aires-Ushuaia") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Indiana/Indianapolis-Winamac") {
+              id(timezones_option) = "EST5EDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Indiana/Knox-Tell_City") {
+              id(timezones_option) = "CST6CDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/Kentucky/Louisville-Monticello") {
+              id(timezones_option) = "EST5EDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "America/North_Dakota/Beulah-New_Salem") {
+              id(timezones_option) = "CST6CDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Casey") {
+              id(timezones_option) = "<+08>-8";
+              id(${time_id})->set_timezone("<+08>-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+08>-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Davis") {
+              id(timezones_option) = "<+07>-7";
+              id(${time_id})->set_timezone("<+07>-7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+07>-7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/DumontDUrville") {
+              id(timezones_option) = "<+10>-10";
+              id(${time_id})->set_timezone("<+10>-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+10>-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Macquarie") {
+              id(timezones_option) = "AEST-10AEDT,M10.1.0,M4.1.0/3";
+              id(${time_id})->set_timezone("AEST-10AEDT,M10.1.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AEST-10AEDT,M10.1.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Mawson-Vostok") {
+              id(timezones_option) = "<+05>-5";
+              id(${time_id})->set_timezone("<+05>-5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+05>-5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/McMurdo-South_Pole") {
+              id(timezones_option) = "NZST-12NZDT,M9.5.0,M4.1.0/3";
+              id(${time_id})->set_timezone("NZST-12NZDT,M9.5.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("NZST-12NZDT,M9.5.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Palmer-Rothera") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Syowa") {
+              id(timezones_option) = "<+03>-3";
+              id(${time_id})->set_timezone("<+03>-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+03>-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Antarctica/Troll") {
+              id(timezones_option) = "<+00>0<+02>-2,M3.5.0/1,M10.5.0/3";
+              id(${time_id})->set_timezone("<+00>0<+02>-2,M3.5.0/1,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+00>0<+02>-2,M3.5.0/1,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Arctic/Longyearbyen") {
+              id(timezones_option) = "CET-1CEST,M3.5.0,M10.5.0/3";
+              id(${time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Aden-Riyadh") {
+              id(timezones_option) = "<+03>-3";
+              id(${time_id})->set_timezone("<+03>-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+03>-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Almaty-Yekaterinburg") {
+              id(timezones_option) = "<+05>-5";
+              id(${time_id})->set_timezone("<+05>-5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+05>-5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Anadyr-Kamchatka") {
+              id(timezones_option) = "<+12>-12";
+              id(${time_id})->set_timezone("<+12>-12");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+12>-12");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Baku-Yerevan") {
+              id(timezones_option) = "<+04>-4";
+              id(${time_id})->set_timezone("<+04>-4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+04>-4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Bangkok-Vientiane") {
+              id(timezones_option) = "<+07>-7";
+              id(${time_id})->set_timezone("<+07>-7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+07>-7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Beirut") {
+              id(timezones_option) = "EET-2EEST,M3.5.0/0,M10.5.0/0";
+              id(${time_id})->set_timezone("EET-2EEST,M3.5.0/0,M10.5.0/0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M3.5.0/0,M10.5.0/0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Bishkek-Urumqi") {
+              id(timezones_option) = "<+06>-6";
+              id(${time_id})->set_timezone("<+06>-6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+06>-6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Brunei-Ulan_Bator") {
+              id(timezones_option) = "<+08>-8";
+              id(${time_id})->set_timezone("<+08>-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+08>-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Calcutta-Kolkata") {
+              id(timezones_option) = "IST-5:30";
+              id(${time_id})->set_timezone("IST-5:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("IST-5:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Chita-Yakutsk") {
+              id(timezones_option) = "<+09>-9";
+              id(${time_id})->set_timezone("<+09>-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+09>-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Chongqing-Taipei") {
+              id(timezones_option) = "CST-8";
+              id(${time_id})->set_timezone("CST-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Colombo") {
+              id(timezones_option) = "<+0530>-5:30";
+              id(${time_id})->set_timezone("<+0530>-5:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0530>-5:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Famagusta-Nicosia") {
+              id(timezones_option) = "EET-2EEST,M3.5.0/3,M10.5.0/4";
+              id(${time_id})->set_timezone("EET-2EEST,M3.5.0/3,M10.5.0/4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M3.5.0/3,M10.5.0/4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Gaza-Hebron") {
+              id(timezones_option) = "EET-2EEST,M3.4.4/50,M10.4.4/50";
+              id(${time_id})->set_timezone("EET-2EEST,M3.4.4/50,M10.4.4/50");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M3.4.4/50,M10.4.4/50");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Hong_Kong") {
+              id(timezones_option) = "HKT-8";
+              id(${time_id})->set_timezone("HKT-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("HKT-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Jakarta-Pontianak") {
+              id(timezones_option) = "WIB-7";
+              id(${time_id})->set_timezone("WIB-7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WIB-7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Jayapura") {
+              id(timezones_option) = "WIT-9";
+              id(${time_id})->set_timezone("WIT-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WIT-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Jerusalem-Tel_Aviv") {
+              id(timezones_option) = "IST-2IDT,M3.4.4/26,M10.5.0";
+              id(${time_id})->set_timezone("IST-2IDT,M3.4.4/26,M10.5.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("IST-2IDT,M3.4.4/26,M10.5.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Kabul") {
+              id(timezones_option) = "<+0430>-4:30";
+              id(${time_id})->set_timezone("<+0430>-4:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0430>-4:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Karachi") {
+              id(timezones_option) = "PKT-5";
+              id(${time_id})->set_timezone("PKT-5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PKT-5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Kathmandu-Katmandu") {
+              id(timezones_option) = "<+0545>-5:45";
+              id(${time_id})->set_timezone("<+0545>-5:45");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0545>-5:45");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Magadan-Srednekolymsk") {
+              id(timezones_option) = "<+11>-11";
+              id(${time_id})->set_timezone("<+11>-11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+11>-11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Makassar-Ujung_Pandang") {
+              id(timezones_option) = "WITA-8";
+              id(${time_id})->set_timezone("WITA-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WITA-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Manila") {
+              id(timezones_option) = "PST-8";
+              id(${time_id})->set_timezone("PST-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PST-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Pyongyang-Seoul") {
+              id(timezones_option) = "KST-9";
+              id(${time_id})->set_timezone("KST-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("KST-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Rangoon-Yangon") {
+              id(timezones_option) = "<+0630>-6:30";
+              id(${time_id})->set_timezone("<+0630>-6:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0630>-6:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Tehran") {
+              id(timezones_option) = "<+0330>-3:30";
+              id(${time_id})->set_timezone("<+0330>-3:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0330>-3:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Tokyo") {
+              id(timezones_option) = "JST-9";
+              id(${time_id})->set_timezone("JST-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("JST-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Asia/Ust-Nera-Vladivostok") {
+              id(timezones_option) = "<+10>-10";
+              id(${time_id})->set_timezone("<+10>-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+10>-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Azores") {
+              id(timezones_option) = "<-01>1<+00>,M3.5.0/0,M10.5.0/1";
+              id(${time_id})->set_timezone("<-01>1<+00>,M3.5.0/0,M10.5.0/1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-01>1<+00>,M3.5.0/0,M10.5.0/1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Bermuda") {
+              id(timezones_option) = "AST4ADT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Canary-Madeira") {
+              id(timezones_option) = "WET0WEST,M3.5.0/1,M10.5.0";
+              id(${time_id})->set_timezone("WET0WEST,M3.5.0/1,M10.5.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WET0WEST,M3.5.0/1,M10.5.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Cape_Verde") {
+              id(timezones_option) = "<-01>1";
+              id(${time_id})->set_timezone("<-01>1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-01>1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Jan_Mayen") {
+              id(timezones_option) = "CET-1CEST,M3.5.0,M10.5.0/3";
+              id(${time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Reykjavik-St_Helena") {
+              id(timezones_option) = "GMT0";
+              id(${time_id})->set_timezone("GMT0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("GMT0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/South_Georgia") {
+              id(timezones_option) = "<-02>2";
+              id(${time_id})->set_timezone("<-02>2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-02>2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Atlantic/Stanley") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/ACT-Victoria") {
+              id(timezones_option) = "AEST-10AEDT,M10.1.0,M4.1.0/3";
+              id(${time_id})->set_timezone("AEST-10AEDT,M10.1.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AEST-10AEDT,M10.1.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/Adelaide-Yancowinna") {
+              id(timezones_option) = "ACST-9:30ACDT,M10.1.0,M4.1.0/3";
+              id(${time_id})->set_timezone("ACST-9:30ACDT,M10.1.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("ACST-9:30ACDT,M10.1.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/Brisbane-Queensland") {
+              id(timezones_option) = "AEST-10";
+              id(${time_id})->set_timezone("AEST-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AEST-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/Darwin-North") {
+              id(timezones_option) = "ACST-9:30";
+              id(${time_id})->set_timezone("ACST-9:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("ACST-9:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/Eucla") {
+              id(timezones_option) = "<+0845>-8:45";
+              id(${time_id})->set_timezone("<+0845>-8:45");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0845>-8:45");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/LHI-Lord_Howe") {
+              id(timezones_option) = "<+1030>-10:30<+11>-11,M10.1.0,M4.1.0";
+              id(${time_id})->set_timezone("<+1030>-10:30<+11>-11,M10.1.0,M4.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+1030>-10:30<+11>-11,M10.1.0,M4.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Australia/Perth-West") {
+              id(timezones_option) = "AWST-8";
+              id(${time_id})->set_timezone("AWST-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AWST-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Brazil/Acre") {
+              id(timezones_option) = "<-05>5";
+              id(${time_id})->set_timezone("<-05>5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-05>5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Brazil/DeNoronha") {
+              id(timezones_option) = "<-02>2";
+              id(${time_id})->set_timezone("<-02>2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-02>2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Brazil/East") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Brazil/West") {
+              id(timezones_option) = "<-04>4";
+              id(${time_id})->set_timezone("<-04>4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-04>4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Atlantic") {
+              id(timezones_option) = "AST4ADT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AST4ADT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Central") {
+              id(timezones_option) = "CST6CDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Eastern") {
+              id(timezones_option) = "EST5EDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Mountain") {
+              id(timezones_option) = "MST7MDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Newfoundland") {
+              id(timezones_option) = "NST3:30NDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("NST3:30NDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("NST3:30NDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Pacific") {
+              id(timezones_option) = "PST8PDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Saskatchewan") {
+              id(timezones_option) = "CST6";
+              id(${time_id})->set_timezone("CST6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Canada/Yukon") {
+              id(timezones_option) = "MST7";
+              id(${time_id})->set_timezone("MST7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Chile/Continental") {
+              id(timezones_option) = "<-04>4<-03>,M9.1.6/24,M4.1.6/24";
+              id(${time_id})->set_timezone("<-04>4<-03>,M9.1.6/24,M4.1.6/24");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-04>4<-03>,M9.1.6/24,M4.1.6/24");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Chile/EasterIsland") {
+              id(timezones_option) = "<-06>6<-05>,M9.1.6/22,M4.1.6/22";
+              id(${time_id})->set_timezone("<-06>6<-05>,M9.1.6/22,M4.1.6/22");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-06>6<-05>,M9.1.6/22,M4.1.6/22");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Amsterdam-Zurich") {
+              id(timezones_option) = "CET-1CEST,M3.5.0,M10.5.0/3";
+              id(${time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CET-1CEST,M3.5.0,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Astrakhan-Ulyanovsk") {
+              id(timezones_option) = "<+04>-4";
+              id(${time_id})->set_timezone("<+04>-4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+04>-4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Athens-Zaporozhye") {
+              id(timezones_option) = "EET-2EEST,M3.5.0/3,M10.5.0/4";
+              id(${time_id})->set_timezone("EET-2EEST,M3.5.0/3,M10.5.0/4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M3.5.0/3,M10.5.0/4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Belfast-London") {
+              id(timezones_option) = "GMT0BST,M3.5.0/1,M10.5.0";
+              id(${time_id})->set_timezone("GMT0BST,M3.5.0/1,M10.5.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("GMT0BST,M3.5.0/1,M10.5.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Chisinau-Tiraspol") {
+              id(timezones_option) = "EET-2EEST,M3.5.0,M10.5.0/3";
+              id(${time_id})->set_timezone("EET-2EEST,M3.5.0,M10.5.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2EEST,M3.5.0,M10.5.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Dublin") {
+              id(timezones_option) = "IST-1GMT0,M10.5.0,M3.5.0/1";
+              id(${time_id})->set_timezone("IST-1GMT0,M10.5.0,M3.5.0/1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("IST-1GMT0,M10.5.0,M3.5.0/1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Istanbul-Minsk") {
+              id(timezones_option) = "<+03>-3";
+              id(${time_id})->set_timezone("<+03>-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+03>-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Kaliningrad") {
+              id(timezones_option) = "EET-2";
+              id(${time_id})->set_timezone("EET-2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EET-2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Kirov-Volgograd") {
+              id(timezones_option) = "MSK-3";
+              id(${time_id})->set_timezone("MSK-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MSK-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Europe/Lisbon") {
+              id(timezones_option) = "WET0WEST,M3.5.0/1,M10.5.0";
+              id(${time_id})->set_timezone("WET0WEST,M3.5.0/1,M10.5.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("WET0WEST,M3.5.0/1,M10.5.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Antananarivo-Mayotte") {
+              id(timezones_option) = "EAT-3";
+              id(${time_id})->set_timezone("EAT-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EAT-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Chagos") {
+              id(timezones_option) = "<+06>-6";
+              id(${time_id})->set_timezone("<+06>-6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+06>-6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Christmas") {
+              id(timezones_option) = "<+07>-7";
+              id(${time_id})->set_timezone("<+07>-7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+07>-7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Cocos") {
+              id(timezones_option) = "<+0630>-6:30";
+              id(${time_id})->set_timezone("<+0630>-6:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+0630>-6:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Kerguelen-Maldives") {
+              id(timezones_option) = "<+05>-5";
+              id(${time_id})->set_timezone("<+05>-5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+05>-5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Indian/Mahe-Reunion") {
+              id(timezones_option) = "<+04>-4";
+              id(${time_id})->set_timezone("<+04>-4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+04>-4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Mexico/BajaNorte") {
+              id(timezones_option) = "PST8PDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Mexico/BajaSur") {
+              id(timezones_option) = "MST7";
+              id(${time_id})->set_timezone("MST7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Mexico/General") {
+              id(timezones_option) = "CST6";
+              id(${time_id})->set_timezone("CST6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Apia-Tongatapu") {
+              id(timezones_option) = "<+13>-13";
+              id(${time_id})->set_timezone("<+13>-13");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+13>-13");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Auckland") {
+              id(timezones_option) = "NZST-12NZDT,M9.5.0,M4.1.0/3";
+              id(${time_id})->set_timezone("NZST-12NZDT,M9.5.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("NZST-12NZDT,M9.5.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Bougainville-Ponape") {
+              id(timezones_option) = "<+11>-11";
+              id(${time_id})->set_timezone("<+11>-11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+11>-11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Chatham") {
+              id(timezones_option) = "<+1245>-12:45<+1345>,M9.5.0/2:45,M4.1.0/3:45";
+              id(${time_id})->set_timezone("<+1245>-12:45<+1345>,M9.5.0/2:45,M4.1.0/3:45");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+1245>-12:45<+1345>,M9.5.0/2:45,M4.1.0/3:45");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Chuuk-Yap") {
+              id(timezones_option) = "<+10>-10";
+              id(${time_id})->set_timezone("<+10>-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+10>-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Easter") {
+              id(timezones_option) = "<-06>6<-05>,M9.1.6/22,M4.1.6/22";
+              id(${time_id})->set_timezone("<-06>6<-05>,M9.1.6/22,M4.1.6/22");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-06>6<-05>,M9.1.6/22,M4.1.6/22");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Fiji-Wallis") {
+              id(timezones_option) = "<+12>-12";
+              id(${time_id})->set_timezone("<+12>-12");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+12>-12");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Galapagos") {
+              id(timezones_option) = "<-06>6";
+              id(${time_id})->set_timezone("<-06>6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-06>6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Gambier") {
+              id(timezones_option) = "<-09>9";
+              id(${time_id})->set_timezone("<-09>9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-09>9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Guam-Saipan") {
+              id(timezones_option) = "ChST-10";
+              id(${time_id})->set_timezone("ChST-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("ChST-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Honolulu-Johnston") {
+              id(timezones_option) = "HST10";
+              id(${time_id})->set_timezone("HST10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("HST10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Kiritimati") {
+              id(timezones_option) = "<+14>-14";
+              id(${time_id})->set_timezone("<+14>-14");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+14>-14");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Marquesas") {
+              id(timezones_option) = "<-0930>9:30";
+              id(${time_id})->set_timezone("<-0930>9:30");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-0930>9:30");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Midway-Samoa") {
+              id(timezones_option) = "SST11";
+              id(${time_id})->set_timezone("SST11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("SST11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Niue") {
+              id(timezones_option) = "<-11>11";
+              id(${time_id})->set_timezone("<-11>11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-11>11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Norfolk") {
+              id(timezones_option) = "<+11>-11<+12>,M10.1.0,M4.1.0/3";
+              id(${time_id})->set_timezone("<+11>-11<+12>,M10.1.0,M4.1.0/3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+11>-11<+12>,M10.1.0,M4.1.0/3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Palau") {
+              id(timezones_option) = "<+09>-9";
+              id(${time_id})->set_timezone("<+09>-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+09>-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Pitcairn") {
+              id(timezones_option) = "<-08>8";
+              id(${time_id})->set_timezone("<-08>8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-08>8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Pacific/Rarotonga-Tahiti") {
+              id(timezones_option) = "<-10>10";
+              id(${time_id})->set_timezone("<-10>10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-10>10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Alaska") {
+              id(timezones_option) = "AKST9AKDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("AKST9AKDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("AKST9AKDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Aleutian") {
+              id(timezones_option) = "HST10HDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("HST10HDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("HST10HDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Arizona") {
+              id(timezones_option) = "MST7";
+              id(${time_id})->set_timezone("MST7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Central-Indiana-Starke") {
+              id(timezones_option) = "CST6CDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("CST6CDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/East-Indiana-Michigan") {
+              id(timezones_option) = "EST5EDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("EST5EDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Hawaii") {
+              id(timezones_option) = "HST10";
+              id(${time_id})->set_timezone("HST10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("HST10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Mountain") {
+              id(timezones_option) = "MST7MDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("MST7MDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Pacific") {
+              id(timezones_option) = "PST8PDT,M3.2.0,M11.1.0";
+              id(${time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("PST8PDT,M3.2.0,M11.1.0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "US/Samoa") {
+              id(timezones_option) = "SST11";
+              id(${time_id})->set_timezone("SST11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("SST11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-Greenwich") {
+              id(timezones_option) = "GMT0";
+              id(${time_id})->set_timezone("GMT0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("GMT0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-14") {
+              id(timezones_option) = "<+14>-14";
+              id(${time_id})->set_timezone("<+14>-14");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+14>-14");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-13") {
+              id(timezones_option) = "<+13>-13";
+              id(${time_id})->set_timezone("<+13>-13");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+13>-13");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-12") {
+              id(timezones_option) = "<+12>-12";
+              id(${time_id})->set_timezone("<+12>-12");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+12>-12");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-11") {
+              id(timezones_option) = "<+11>-11";
+              id(${time_id})->set_timezone("<+11>-11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+11>-11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-10") {
+              id(timezones_option) = "<+10>-10";
+              id(${time_id})->set_timezone("<+10>-10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+10>-10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-9") {
+              id(timezones_option) = "<+09>-9";
+              id(${time_id})->set_timezone("<+09>-9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+09>-9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-8") {
+              id(timezones_option) = "<+08>-8";
+              id(${time_id})->set_timezone("<+08>-8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+08>-8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-7") {
+              id(timezones_option) = "<+07>-7";
+              id(${time_id})->set_timezone("<+07>-7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+07>-7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-6") {
+              id(timezones_option) = "<+06>-6";
+              id(${time_id})->set_timezone("<+06>-6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+06>-6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-5") {
+              id(timezones_option) = "<+05>-5";
+              id(${time_id})->set_timezone("<+05>-5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+05>-5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-4") {
+              id(timezones_option) = "<+04>-4";
+              id(${time_id})->set_timezone("<+04>-4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+04>-4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-3") {
+              id(timezones_option) = "<+03>-3";
+              id(${time_id})->set_timezone("<+03>-3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+03>-3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-2") {
+              id(timezones_option) = "<+02>-2";
+              id(${time_id})->set_timezone("<+02>-2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+02>-2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT-1") {
+              id(timezones_option) = "<+01>-1";
+              id(${time_id})->set_timezone("<+01>-1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<+01>-1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+1") {
+              id(timezones_option) = "<-01>1";
+              id(${time_id})->set_timezone("<-01>1");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-01>1");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+2") {
+              id(timezones_option) = "<-02>2";
+              id(${time_id})->set_timezone("<-02>2");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-02>2");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+3") {
+              id(timezones_option) = "<-03>3";
+              id(${time_id})->set_timezone("<-03>3");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-03>3");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+4") {
+              id(timezones_option) = "<-04>4";
+              id(${time_id})->set_timezone("<-04>4");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-04>4");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+5") {
+              id(timezones_option) = "<-05>5";
+              id(${time_id})->set_timezone("<-05>5");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-05>5");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+6") {
+              id(timezones_option) = "<-06>6";
+              id(${time_id})->set_timezone("<-06>6");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-06>6");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+7") {
+              id(timezones_option) = "<-07>7";
+              id(${time_id})->set_timezone("<-07>7");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-07>7");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+8") {
+              id(timezones_option) = "<-08>8";
+              id(${time_id})->set_timezone("<-08>8");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-08>8");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+9") {
+              id(timezones_option) = "<-09>9";
+              id(${time_id})->set_timezone("<-09>9");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-09>9");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+10") {
+              id(timezones_option) = "<-10>10";
+              id(${time_id})->set_timezone("<-10>10");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-10>10");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+11") {
+              id(timezones_option) = "<-11>11";
+              id(${time_id})->set_timezone("<-11>11");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-11>11");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/GMT+12") {
+              id(timezones_option) = "<-12>12";
+              id(${time_id})->set_timezone("<-12>12");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("<-12>12");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else if (x == "Etc/UCT-Zulu") {
+              id(timezones_option) = "UTC0";
+              id(${time_id})->set_timezone("UTC0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("UTC0");
+              #endif
+              id(${time_id})->call_setup();
+            }
+            else {
+              id(timezones_option) = "UTC0";
+              id(${time_id})->set_timezone("UTC0");
+              #ifdef USE_${rtc_time_id}
+              id(${rtc_time_id})->set_timezone("UTC0");
+              #endif
+              id(${time_id})->call_setup();
+            }
