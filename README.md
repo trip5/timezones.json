@@ -8,6 +8,14 @@ Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is 
 * combines Various timezones in regions into one entry in the `min` files
 * outputs CSV and JSON
 * compresses to gzip files
+* can be fetched from various devices or apps
+
+## Previews
+
+- [Full Timezone List](timezones.md)
+- [Minimal Timezone List](timezones.min.md)
+
+## Inspiration
 
 Credit to dmfilipenko for the original script: https://github.com/dmfilipenko/timezones.json
 
