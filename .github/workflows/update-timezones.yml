@@ -147,7 +147,5 @@ jobs:
             *.gz
             *.json
             *.csv
-            *.h
-            *.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
