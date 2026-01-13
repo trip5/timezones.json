@@ -96,28 +96,71 @@ jobs:
       - name: Generate ESPHome timezone files
         if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         run: |
-          # Generate timezones-options.esphome.h
-          echo "// Auto-generated timezone options for ESPHome" > timezones-options.esphome.h
+          # Generate ESPHome package YAML
+          echo "# ESPHome Timezone Selector Package" > timezones_options.yaml
+          echo "# Auto-generated from tzdb ${{ steps.fetch_latest.outputs.version }}" >> timezones_options.yaml
+          echo "# Include in your ESPHome config with:" >> timezones_options.yaml
+          echo "#   substitutions:" >> timezones_options.yaml
+          echo "#     time_id: sntp_time      # ID of your main time component (required)" >> timezones_options.yaml
+          echo "#     rtc_time_id: rtc_time   # ID of your RTC time component (optional)" >> timezones_options.yaml
+          echo "#   packages:" >> timezones_options.yaml
+          echo "#     timezones: github://vshymanskyy/posix_tz_db/timezones_options.yaml@${{ steps.fetch_latest.outputs.version }}" >> timezones_options.yaml
+          echo "" >> timezones_options.yaml
+          echo "# The POSIX timezone string is also stored in global 'timezones_option' (persists across reboots)" >> timezones_options.yaml
+          echo "" >> timezones_options.yaml
+          echo "globals:" >> timezones_options.yaml
+          echo "  - id: timezones_option" >> timezones_options.yaml
+          echo "    type: std::string" >> timezones_options.yaml
+          echo "    restore_value: true" >> timezones_options.yaml
+          echo "    initial_value: '\"UTC0\"'" >> timezones_options.yaml
+          echo "" >> timezones_options.yaml
+          echo "select:" >> timezones_options.yaml
+          echo "  - platform: template" >> timezones_options.yaml
+          echo "    name: \"Timezone\"" >> timezones_options.yaml
+          echo "    id: timezone_select" >> timezones_options.yaml
+          echo "    optimistic: true" >> timezones_options.yaml
+          echo "    options:" >> timezones_options.yaml
+          
+          # Add all timezone options
+          while IFS=',' read -r zone posix; do
+            zone=$(echo "$zone" | tr -d '"')
+            echo "      - \"$zone\"" >> timezones_options.yaml
+          done < timezones.min.csv
+          
+          echo "    on_value:" >> timezones_options.yaml
+          echo "      then:" >> timezones_options.yaml
+          echo "        - lambda: |-" >> timezones_options.yaml
+          
+          # Add timezone mapping logic with both global storage and direct set_timezone call
           first=true
           while IFS=',' read -r zone posix; do
-            # Remove quotes
             zone=$(echo "$zone" | tr -d '"')
             posix=$(echo "$posix" | tr -d '"')
             if [ "$first" = true ]; then
-              echo "if (x == \"$zone\") { id(tzoption) = \"$posix\"; }" >> timezones-options.esphome.h
+              echo "            if (x == \"$zone\") {" >> timezones_options.yaml
               first=false
             else
-              echo "else if (x == \"$zone\") { id(tzoption) = \"$posix\"; }" >> timezones-options.esphome.h
+              echo "            else if (x == \"$zone\") {" >> timezones_options.yaml
             fi
+            echo "              id(timezones_option) = \"$posix\";" >> timezones_options.yaml
+            echo "              id(\${time_id})->set_timezone(\"$posix\");" >> timezones_options.yaml
+            echo "              #ifdef USE_\${rtc_time_id}" >> timezones_options.yaml
+            echo "              id(\${rtc_time_id})->set_timezone(\"$posix\");" >> timezones_options.yaml
+            echo "              #endif" >> timezones_options.yaml
+            echo "              id(\${time_id})->call_setup();" >> timezones_options.yaml
+            echo "            }" >> timezones_options.yaml
           done < timezones.min.csv
-          echo "else { id(tzoption) = \"UTC0\"; }" >> timezones-options.esphome.h
           
-          # Generate timezones-options.yaml
-          echo "[" > timezones-options.yaml
-          awk -F',' '{gsub(/"/, "", $1); print "  \"" $1 "\"," }' timezones.min.csv | sed '$ s/,$//' >> timezones-options.yaml
-          echo "]" >> timezones-options.yaml
+          echo "            else {" >> timezones_options.yaml
+          echo "              id(timezones_option) = \"UTC0\";" >> timezones_options.yaml
+          echo "              id(\${time_id})->set_timezone(\"UTC0\");" >> timezones_options.yaml
+          echo "              #ifdef USE_\${rtc_time_id}" >> timezones_options.yaml
+          echo "              id(\${rtc_time_id})->set_timezone(\"UTC0\");" >> timezones_options.yaml
+          echo "              #endif" >> timezones_options.yaml
+          echo "              id(\${time_id})->call_setup();" >> timezones_options.yaml
+          echo "            }" >> timezones_options.yaml
           
-          echo "Generated ESPHome timezone files"
+          echo "Generated ESPHome package file"
 
       # Update tzdb_version.txt with latest version
       - name: Update tzdb_version.txt
@@ -131,7 +174,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz tzdb_version.txt timezones-options.esphome.h timezones-options.yaml
+          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz timezones_options.yaml tzdb_version.txt
           git diff --staged --quiet || git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
           git push
 
