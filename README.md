@@ -9,15 +9,15 @@ Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is 
 * outputs CSV and JSON
 * compresses to gzip files
 
+## Previews (POSIX Names & Strings)
+
+- [Full Timezone List](timezones.md)
+- [Minimal Timezone List](timezones.min.md)
+
 ## Fetching
 
 Can be fetched from various devices or apps using a URL such as:
 - [https://github.com/trip5/timezones.json/releases/latest/download/timezones.csv](https://github.com/trip5/timezones.json/releases/latest/download/timezones.csv)
-
-## Previews
-
-- [Full Timezone List](timezones.md)
-- [Minimal Timezone List](timezones.min.md)
 
 ## Inspiration
 
