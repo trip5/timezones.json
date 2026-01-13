@@ -11,7 +11,7 @@ Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is 
 
 ## Fetching
 
-Fetched from various devices or apps using a URL such as:
+Can be fetched from various devices or apps using a URL such as:
 - [https://github.com/trip5/timezones.json/releases/latest/download/timezones.csv](https://github.com/trip5/timezones.json/releases/latest/download/timezones.csv)
 
 ## Previews
