@@ -132,8 +132,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz timezones_options.yaml timezones.md timezones.min.md tzdb_version.txt README.md
-          git diff --staged --quiet || git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
+          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz timezones.md timezones.min.md tzdb_version.txt
           git push
 
       # Create a GitHub release and upload all assets
