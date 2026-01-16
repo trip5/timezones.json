@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to Etc/GMT+12"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "<-12>12"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to Etc/GMT+12"

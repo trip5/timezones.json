@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Alternate Timezone to America/Adak-Atka"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_alternate_timezone
+    data:
+      value: "HST10HDT,M3.2.0,M11.1.0"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Alternate Set to America/Adak-Atka"

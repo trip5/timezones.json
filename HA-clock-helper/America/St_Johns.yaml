@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to America/St_Johns"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "NST3:30NDT,M3.2.0,M11.1.0"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to America/St_Johns"

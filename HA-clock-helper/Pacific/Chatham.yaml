@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to Pacific/Chatham"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "<+1245>-12:45<+1345>,M9.5.0/2:45,M4.1.0/3:45"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to Pacific/Chatham"

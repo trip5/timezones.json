@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to Antarctica/Macquarie"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "AEST-10AEDT,M10.1.0,M4.1.0/3"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to Antarctica/Macquarie"
