@@ -100,7 +100,7 @@ def generate_ha_helpers(input_file, output_dir):
                 filename = sanitize_filename(tz_name)
                 display_name = filename  # Use the sanitized name for display
                 
-                base_url = "https://raw.githubusercontent.com/vshymanskyy/posix_tz_db/master/HA-clock-helper"
+                base_url = "https://raw.githubusercontent.com/trip5/timezones.json/refs/heads/master/HA-clock-helper"
                 primary_url = f"{base_url}/{region}/{filename}.yaml"
                 alternate_url = f"{base_url}/{region}/{filename}-Alternate.yaml"
                 

@@ -167,7 +167,6 @@ jobs:
             *.gz
             *.json
             *.csv
-            HA-clock-helper/**/*.yaml
-            HA-clock-helper/index.md
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
