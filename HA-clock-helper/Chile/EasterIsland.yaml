@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to Chile/EasterIsland"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "<-06>6<-05>,M9.1.6/22,M4.1.6/22"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to Chile/EasterIsland"

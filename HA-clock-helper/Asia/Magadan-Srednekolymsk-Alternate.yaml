@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Alternate Timezone to Asia/Magadan-Srednekolymsk"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_alternate_timezone
+    data:
+      value: "<+11>-11"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Alternate Set to Asia/Magadan-Srednekolymsk"

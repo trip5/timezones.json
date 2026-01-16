@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Alternate Timezone to Antarctica/Davis"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_alternate_timezone
+    data:
+      value: "<+07>-7"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Alternate Set to Antarctica/Davis"

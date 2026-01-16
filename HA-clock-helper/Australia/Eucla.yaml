@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to Australia/Eucla"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "<+0845>-8:45"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to Australia/Eucla"

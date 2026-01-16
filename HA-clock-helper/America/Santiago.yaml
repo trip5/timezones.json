@@ -1,0 +1,11 @@
+alias: "Set Clock Helper Timezone to America/Santiago"
+sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.clock_helper_timezone
+    data:
+      value: "<-04>4<-03>,M9.1.6/24,M4.1.6/24"
+  - service: persistent_notification.create
+    data:
+      title: ✅ Timezone Updated
+      message: "Clock Helper Timezone Set to America/Santiago"
