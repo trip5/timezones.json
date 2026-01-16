@@ -33,7 +33,11 @@ jobs:
       - name: Check if tzdb update needed
         id: check_update
         run: |
-          if [ "${{ steps.fetch_latest.outputs.version }}" = "${{ steps.read_version.outputs.current }}" ]; then
+          # Always run if manually triggered
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manually triggered - forcing update."
+            echo "update_needed=true" >> $GITHUB_OUTPUT
+          elif [ "${{ steps.fetch_latest.outputs.version }}" = "${{ steps.read_version.outputs.current }}" ]; then
             echo "Up-to-date, no update needed."
             echo "update_needed=false" >> $GITHUB_OUTPUT
           else
