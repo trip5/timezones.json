@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Brunei-Ulan_Bator"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Brunei-Ulan_Bator
+  description: Sets the clock helper alternate timezone to Asia/Brunei-Ulan_Bator (<+08>-8)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Havana"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Havana
+  description: Sets the clock helper alternate timezone to America/Havana (CST5CDT,M3.2.0/0,M11.1.0/1)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

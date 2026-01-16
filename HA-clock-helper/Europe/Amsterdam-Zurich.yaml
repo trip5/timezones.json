@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Europe/Amsterdam-Zurich"
+blueprint:
+  name: Set Clock Helper Timezone to Europe/Amsterdam-Zurich
+  description: Sets the clock helper timezone to Europe/Amsterdam-Zurich (CET-1CEST,M3.5.0,M10.5.0/3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Canada/Yukon"
+blueprint:
+  name: Set Clock Helper Timezone to Canada/Yukon
+  description: Sets the clock helper timezone to Canada/Yukon (MST7)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

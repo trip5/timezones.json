@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Pacific/Pitcairn"
+blueprint:
+  name: Set Clock Helper Timezone to Pacific/Pitcairn
+  description: Sets the clock helper timezone to Pacific/Pitcairn (<-08>8)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Africa/Abidjan-Timbuktu"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Africa/Abidjan-Timbuktu
+  description: Sets the clock helper alternate timezone to Africa/Abidjan-Timbuktu (GMT0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Norfolk"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Norfolk
+  description: Sets the clock helper alternate timezone to Pacific/Norfolk (<+11>-11<+12>,M10.1.0,M4.1.0/3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

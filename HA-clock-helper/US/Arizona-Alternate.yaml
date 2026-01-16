@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to US/Arizona"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to US/Arizona
+  description: Sets the clock helper alternate timezone to US/Arizona (MST7)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

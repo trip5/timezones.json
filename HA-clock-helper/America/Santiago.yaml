@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to America/Santiago"
+blueprint:
+  name: Set Clock Helper Timezone to America/Santiago
+  description: Sets the clock helper timezone to America/Santiago (<-04>4<-03>,M9.1.6/24,M4.1.6/24)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

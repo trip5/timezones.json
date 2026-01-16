@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Beirut"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Beirut
+  description: Sets the clock helper timezone to Asia/Beirut (EET-2EEST,M3.5.0/0,M10.5.0/0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to America/Noronha"
+blueprint:
+  name: Set Clock Helper Timezone to America/Noronha
+  description: Sets the clock helper timezone to America/Noronha (<-02>2)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

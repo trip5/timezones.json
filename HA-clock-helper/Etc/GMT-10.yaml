@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Etc/GMT-10"
+blueprint:
+  name: Set Clock Helper Timezone to Etc/GMT-10
+  description: Sets the clock helper timezone to Etc/GMT-10 (<+10>-10)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

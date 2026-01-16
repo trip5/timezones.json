@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Antarctica/Syowa"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Antarctica/Syowa
+  description: Sets the clock helper alternate timezone to Antarctica/Syowa (<+03>-3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

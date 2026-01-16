@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to US/Pacific"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to US/Pacific
+  description: Sets the clock helper alternate timezone to US/Pacific (PST8PDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

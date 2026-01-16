@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Antarctica/Casey"
+blueprint:
+  name: Set Clock Helper Timezone to Antarctica/Casey
+  description: Sets the clock helper timezone to Antarctica/Casey (<+08>-8)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

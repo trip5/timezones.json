@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Tokyo"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Tokyo
+  description: Sets the clock helper timezone to Asia/Tokyo (JST-9)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

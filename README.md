@@ -16,7 +16,7 @@ Uses Github workflow to automatically update weekly (Sunday) when a new TZDB is 
 
 ## Home Assistant Helpers for Trip5's Clocks
 
-- [Clickable Minimal Timezone List](Ha-clock-helper/index.md)
+- [Clickable Minimal Timezone List](HA-clock-helper/index.md)
 
 ## Fetching
 

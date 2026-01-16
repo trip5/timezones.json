@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Pacific/Chuuk-Yap"
+blueprint:
+  name: Set Clock Helper Timezone to Pacific/Chuuk-Yap
+  description: Sets the clock helper timezone to Pacific/Chuuk-Yap (<+10>-10)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

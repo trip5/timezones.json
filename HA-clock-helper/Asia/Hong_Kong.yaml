@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Hong_Kong"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Hong_Kong
+  description: Sets the clock helper timezone to Asia/Hong_Kong (HKT-8)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

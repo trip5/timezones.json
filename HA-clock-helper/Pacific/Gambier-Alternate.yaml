@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Gambier"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Gambier
+  description: Sets the clock helper alternate timezone to Pacific/Gambier (<-09>9)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

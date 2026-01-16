@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Canada/Saskatchewan"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Canada/Saskatchewan
+  description: Sets the clock helper alternate timezone to Canada/Saskatchewan (CST6)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

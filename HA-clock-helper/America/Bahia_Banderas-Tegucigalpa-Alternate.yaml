@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Bahia_Banderas-Tegucigalpa"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Bahia_Banderas-Tegucigalpa
+  description: Sets the clock helper alternate timezone to America/Bahia_Banderas-Tegucigalpa (CST6)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

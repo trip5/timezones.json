@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Europe/Istanbul-Minsk"
+blueprint:
+  name: Set Clock Helper Timezone to Europe/Istanbul-Minsk
+  description: Sets the clock helper timezone to Europe/Istanbul-Minsk (<+03>-3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

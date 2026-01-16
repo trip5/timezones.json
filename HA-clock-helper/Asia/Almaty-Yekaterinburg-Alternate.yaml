@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Almaty-Yekaterinburg"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Almaty-Yekaterinburg
+  description: Sets the clock helper alternate timezone to Asia/Almaty-Yekaterinburg (<+05>-5)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

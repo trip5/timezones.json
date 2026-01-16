@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Kabul"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Kabul
+  description: Sets the clock helper alternate timezone to Asia/Kabul (<+0430>-4:30)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

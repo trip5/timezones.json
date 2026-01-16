@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Canada/Newfoundland"
+blueprint:
+  name: Set Clock Helper Timezone to Canada/Newfoundland
+  description: Sets the clock helper timezone to Canada/Newfoundland (NST3:30NDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

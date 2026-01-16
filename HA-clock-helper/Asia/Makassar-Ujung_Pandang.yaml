@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Makassar-Ujung_Pandang"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Makassar-Ujung_Pandang
+  description: Sets the clock helper timezone to Asia/Makassar-Ujung_Pandang (WITA-8)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

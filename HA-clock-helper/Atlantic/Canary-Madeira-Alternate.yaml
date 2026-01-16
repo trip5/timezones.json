@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Atlantic/Canary-Madeira"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Atlantic/Canary-Madeira
+  description: Sets the clock helper alternate timezone to Atlantic/Canary-Madeira (WET0WEST,M3.5.0/1,M10.5.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

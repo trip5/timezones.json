@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Etc/GMT+2"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Etc/GMT+2
+  description: Sets the clock helper alternate timezone to Etc/GMT+2 (<-02>2)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

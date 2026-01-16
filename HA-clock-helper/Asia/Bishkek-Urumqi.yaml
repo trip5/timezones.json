@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Bishkek-Urumqi"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Bishkek-Urumqi
+  description: Sets the clock helper timezone to Asia/Bishkek-Urumqi (<+06>-6)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

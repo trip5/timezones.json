@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Guam-Saipan"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Guam-Saipan
+  description: Sets the clock helper alternate timezone to Pacific/Guam-Saipan (ChST-10)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

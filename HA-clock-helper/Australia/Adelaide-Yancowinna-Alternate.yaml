@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Australia/Adelaide-Yancowinna"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Australia/Adelaide-Yancowinna
+  description: Sets the clock helper alternate timezone to Australia/Adelaide-Yancowinna (ACST-9:30ACDT,M10.1.0,M4.1.0/3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

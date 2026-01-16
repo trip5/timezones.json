@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Indiana/Indianapolis-Winamac"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Indiana/Indianapolis-Winamac
+  description: Sets the clock helper alternate timezone to America/Indiana/Indianapolis-Winamac (EST5EDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

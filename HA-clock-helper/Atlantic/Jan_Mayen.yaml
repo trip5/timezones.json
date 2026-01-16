@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Atlantic/Jan_Mayen"
+blueprint:
+  name: Set Clock Helper Timezone to Atlantic/Jan_Mayen
+  description: Sets the clock helper timezone to Atlantic/Jan_Mayen (CET-1CEST,M3.5.0,M10.5.0/3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

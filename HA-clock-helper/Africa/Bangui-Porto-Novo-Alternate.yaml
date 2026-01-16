@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Africa/Bangui-Porto-Novo"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Africa/Bangui-Porto-Novo
+  description: Sets the clock helper alternate timezone to Africa/Bangui-Porto-Novo (WAT-1)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

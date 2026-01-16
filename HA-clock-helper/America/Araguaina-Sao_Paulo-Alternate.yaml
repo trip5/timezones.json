@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Araguaina-Sao_Paulo"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Araguaina-Sao_Paulo
+  description: Sets the clock helper alternate timezone to America/Araguaina-Sao_Paulo (<-03>3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

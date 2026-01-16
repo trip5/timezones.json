@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Indian/Christmas"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Indian/Christmas
+  description: Sets the clock helper alternate timezone to Indian/Christmas (<+07>-7)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

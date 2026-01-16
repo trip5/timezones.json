@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Etc/GMT-Greenwich"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Etc/GMT-Greenwich
+  description: Sets the clock helper alternate timezone to Etc/GMT-Greenwich (GMT0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

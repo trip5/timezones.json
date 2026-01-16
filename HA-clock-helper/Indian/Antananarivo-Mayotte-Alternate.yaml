@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Indian/Antananarivo-Mayotte"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Indian/Antananarivo-Mayotte
+  description: Sets the clock helper alternate timezone to Indian/Antananarivo-Mayotte (EAT-3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

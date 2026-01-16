@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Bougainville-Ponape"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Bougainville-Ponape
+  description: Sets the clock helper alternate timezone to Pacific/Bougainville-Ponape (<+11>-11)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

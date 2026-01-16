@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to US/Central-Indiana-Starke"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to US/Central-Indiana-Starke
+  description: Sets the clock helper alternate timezone to US/Central-Indiana-Starke (CST6CDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

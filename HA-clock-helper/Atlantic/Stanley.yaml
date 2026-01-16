@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Atlantic/Stanley"
+blueprint:
+  name: Set Clock Helper Timezone to Atlantic/Stanley
+  description: Sets the clock helper timezone to Atlantic/Stanley (<-03>3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

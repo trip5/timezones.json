@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Glace_Bay-Thule"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Glace_Bay-Thule
+  description: Sets the clock helper alternate timezone to America/Glace_Bay-Thule (AST4ADT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

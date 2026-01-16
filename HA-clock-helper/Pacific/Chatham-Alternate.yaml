@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Chatham"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Chatham
+  description: Sets the clock helper alternate timezone to Pacific/Chatham (<+1245>-12:45<+1345>,M9.5.0/2:45,M4.1.0/3:45)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

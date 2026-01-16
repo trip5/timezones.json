@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Mexico/General"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Mexico/General
+  description: Sets the clock helper alternate timezone to Mexico/General (CST6)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

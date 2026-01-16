@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to America/Danmarkshavn"
+blueprint:
+  name: Set Clock Helper Timezone to America/Danmarkshavn
+  description: Sets the clock helper timezone to America/Danmarkshavn (GMT0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

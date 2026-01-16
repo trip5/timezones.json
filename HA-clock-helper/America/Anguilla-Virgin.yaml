@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to America/Anguilla-Virgin"
+blueprint:
+  name: Set Clock Helper Timezone to America/Anguilla-Virgin
+  description: Sets the clock helper timezone to America/Anguilla-Virgin (AST4)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

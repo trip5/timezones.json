@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to US/Alaska"
+blueprint:
+  name: Set Clock Helper Timezone to US/Alaska
+  description: Sets the clock helper timezone to US/Alaska (AKST9AKDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Pyongyang-Seoul"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Pyongyang-Seoul
+  description: Sets the clock helper alternate timezone to Asia/Pyongyang-Seoul (KST-9)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

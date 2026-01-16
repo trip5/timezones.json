@@ -23,11 +23,15 @@ def get_region(tz_name):
     return tz_name.split('-')[0]  # For Etc/GMT entries
 
 def create_yaml_content(tz_name, posix_string, is_alternate=False):
-    """Generate YAML content for a timezone helper"""
+    """Generate YAML content for a timezone helper blueprint"""
     entity_suffix = "alternate_timezone" if is_alternate else "timezone"
     message_suffix = "Alternate Set" if is_alternate else "Set"
     
-    yaml = f'''alias: "Set Clock Helper {'Alternate ' if is_alternate else ''}Timezone to {tz_name}"
+    yaml = f'''blueprint:
+  name: Set Clock Helper {'Alternate ' if is_alternate else ''}Timezone to {tz_name}
+  description: Sets the clock helper {'alternate ' if is_alternate else ''}timezone to {tz_name} ({posix_string})
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to America/Argentina/Buenos_Aires-Ushuaia"
+blueprint:
+  name: Set Clock Helper Timezone to America/Argentina/Buenos_Aires-Ushuaia
+  description: Sets the clock helper timezone to America/Argentina/Buenos_Aires-Ushuaia (<-03>3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

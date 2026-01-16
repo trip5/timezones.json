@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Africa/Algiers-Tunis"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Africa/Algiers-Tunis
+  description: Sets the clock helper alternate timezone to Africa/Algiers-Tunis (CET-1)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

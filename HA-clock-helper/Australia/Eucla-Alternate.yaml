@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Australia/Eucla"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Australia/Eucla
+  description: Sets the clock helper alternate timezone to Australia/Eucla (<+0845>-8:45)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

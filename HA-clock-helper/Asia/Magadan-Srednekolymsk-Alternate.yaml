@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Magadan-Srednekolymsk"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Magadan-Srednekolymsk
+  description: Sets the clock helper alternate timezone to Asia/Magadan-Srednekolymsk (<+11>-11)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

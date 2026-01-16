@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Europe/Dublin"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Europe/Dublin
+  description: Sets the clock helper alternate timezone to Europe/Dublin (IST-1GMT0,M10.5.0,M3.5.0/1)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

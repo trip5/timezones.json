@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Indian/Chagos"
+blueprint:
+  name: Set Clock Helper Timezone to Indian/Chagos
+  description: Sets the clock helper timezone to Indian/Chagos (<+06>-6)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Chile/Continental"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Chile/Continental
+  description: Sets the clock helper alternate timezone to Chile/Continental (<-04>4<-03>,M9.1.6/24,M4.1.6/24)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

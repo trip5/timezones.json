@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Atlantic/Cape_Verde"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Atlantic/Cape_Verde
+  description: Sets the clock helper alternate timezone to Atlantic/Cape_Verde (<-01>1)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

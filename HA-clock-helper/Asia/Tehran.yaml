@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Tehran"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Tehran
+  description: Sets the clock helper timezone to Asia/Tehran (<+0330>-3:30)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

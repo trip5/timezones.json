@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Antarctica/Davis"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Antarctica/Davis
+  description: Sets the clock helper alternate timezone to Antarctica/Davis (<+07>-7)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

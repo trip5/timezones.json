@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Europe/Astrakhan-Ulyanovsk"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Europe/Astrakhan-Ulyanovsk
+  description: Sets the clock helper alternate timezone to Europe/Astrakhan-Ulyanovsk (<+04>-4)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

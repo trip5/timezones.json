@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Asia/Jerusalem-Tel_Aviv"
+blueprint:
+  name: Set Clock Helper Timezone to Asia/Jerusalem-Tel_Aviv
+  description: Sets the clock helper timezone to Asia/Jerusalem-Tel_Aviv (IST-2IDT,M3.4.4/26,M10.5.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Timezone to Pacific/Marquesas"
+blueprint:
+  name: Set Clock Helper Timezone to Pacific/Marquesas
+  description: Sets the clock helper timezone to Pacific/Marquesas (<-0930>9:30)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

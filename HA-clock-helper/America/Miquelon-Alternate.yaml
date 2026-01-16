@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Miquelon"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Miquelon
+  description: Sets the clock helper alternate timezone to America/Miquelon (<-03>3<-02>,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

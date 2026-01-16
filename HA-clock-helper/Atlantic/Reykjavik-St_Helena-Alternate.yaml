@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Atlantic/Reykjavik-St_Helena"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Atlantic/Reykjavik-St_Helena
+  description: Sets the clock helper alternate timezone to Atlantic/Reykjavik-St_Helena (GMT0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

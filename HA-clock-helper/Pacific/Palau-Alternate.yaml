@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Palau"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Palau
+  description: Sets the clock helper alternate timezone to Pacific/Palau (<+09>-9)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

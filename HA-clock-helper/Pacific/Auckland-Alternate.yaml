@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Auckland"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Auckland
+  description: Sets the clock helper alternate timezone to Pacific/Auckland (NZST-12NZDT,M9.5.0,M4.1.0/3)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Atlantic/Bermuda"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Atlantic/Bermuda
+  description: Sets the clock helper alternate timezone to Atlantic/Bermuda (AST4ADT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

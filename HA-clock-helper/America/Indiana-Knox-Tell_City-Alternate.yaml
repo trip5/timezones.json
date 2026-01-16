@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to America/Indiana/Knox-Tell_City"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to America/Indiana/Knox-Tell_City
+  description: Sets the clock helper alternate timezone to America/Indiana/Knox-Tell_City (CST6CDT,M3.2.0,M11.1.0)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

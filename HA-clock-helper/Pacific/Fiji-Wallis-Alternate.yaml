@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Fiji-Wallis"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Fiji-Wallis
+  description: Sets the clock helper alternate timezone to Pacific/Fiji-Wallis (<+12>-12)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

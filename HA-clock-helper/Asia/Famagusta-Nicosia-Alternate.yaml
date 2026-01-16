@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Asia/Famagusta-Nicosia"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Asia/Famagusta-Nicosia
+  description: Sets the clock helper alternate timezone to Asia/Famagusta-Nicosia (EET-2EEST,M3.5.0/3,M10.5.0/4)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:

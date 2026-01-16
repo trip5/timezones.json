@@ -1,4 +1,8 @@
-alias: "Set Clock Helper Alternate Timezone to Pacific/Honolulu-Johnston"
+blueprint:
+  name: Set Clock Helper Alternate Timezone to Pacific/Honolulu-Johnston
+  description: Sets the clock helper alternate timezone to Pacific/Honolulu-Johnston (HST10)
+  domain: script
+
 sequence:
   - service: input_text.set_value
     target:
