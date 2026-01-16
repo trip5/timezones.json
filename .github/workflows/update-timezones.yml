@@ -125,6 +125,22 @@ jobs:
           
           echo "Generated markdown table files"
 
+      # Generate Home Assistant Clock Helper files
+      - name: Generate HA Clock Helper files
+        if: ${{ steps.check_update.outputs.update_needed == 'true' }}
+        run: |
+          # Remove old HA-clock-helper content (except the script itself)
+          find HA-clock-helper -mindepth 1 -maxdepth 1 ! -name 'generate-all-ha-helpers.py' -exec rm -rf {} +
+          
+          # Generate fresh files
+          python3 ./HA-clock-helper/generate-all-ha-helpers.py timezones.min.csv HA-clock-helper
+          echo "Generated HA Clock Helper YAML files and index"
+          
+          # Git will automatically detect:
+          # - New files (will be added)
+          # - Modified files (will show as changed)
+          # - Deleted files (will be removed from index)
+
       - name: Commit and push all at once
         if: ${{ steps.check_update.outputs.update_needed == 'true' }}
         env:
@@ -132,7 +148,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'actions@github.com'
-          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz timezones.md timezones.min.md tzdb_version.txt
+          git add timezones.json timezones.json.gz timezones.csv timezones.csv.gz timezones.min.json timezones.min.json.gz timezones.min.csv timezones.min.csv.gz timezones.md timezones.min.md tzdb_version.txt HA-clock-helper/
           git diff --staged --quiet || git commit -m "Update timezones JSON and CSV files - $TZDB_VERSION"
           git push
 
@@ -147,5 +163,7 @@ jobs:
             *.gz
             *.json
             *.csv
+            HA-clock-helper/**/*.yaml
+            HA-clock-helper/index.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
