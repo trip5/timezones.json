@@ -398,7 +398,7 @@
 | `Europe/Bucharest` | `EET-2EEST,M3.5.0/3,M10.5.0/4` |
 | `Europe/Budapest` | `CET-1CEST,M3.5.0,M10.5.0/3` |
 | `Europe/Busingen` | `CET-1CEST,M3.5.0,M10.5.0/3` |
-| `Europe/Chisinau` | `EET-2EEST,M3.5.0,M10.5.0/3` |
+| `Europe/Chisinau` | `EET-2EEST,M3.5.0/3,M10.5.0/4` |
 | `Europe/Copenhagen` | `CET-1CEST,M3.5.0,M10.5.0/3` |
 | `Europe/Dublin` | `IST-1GMT0,M10.5.0,M3.5.0/1` |
 | `Europe/Gibraltar` | `CET-1CEST,M3.5.0,M10.5.0/3` |
@@ -438,7 +438,7 @@
 | `Europe/Stockholm` | `CET-1CEST,M3.5.0,M10.5.0/3` |
 | `Europe/Tallinn` | `EET-2EEST,M3.5.0/3,M10.5.0/4` |
 | `Europe/Tirane` | `CET-1CEST,M3.5.0,M10.5.0/3` |
-| `Europe/Tiraspol` | `EET-2EEST,M3.5.0,M10.5.0/3` |
+| `Europe/Tiraspol` | `EET-2EEST,M3.5.0/3,M10.5.0/4` |
 | `Europe/Ulyanovsk` | `<+04>-4` |
 | `Europe/Uzhgorod` | `EET-2EEST,M3.5.0/3,M10.5.0/4` |
 | `Europe/Vaduz` | `CET-1CEST,M3.5.0,M10.5.0/3` |
@@ -535,9 +535,9 @@
 | `Etc/GMT-3` | `<+03>-3` |
 | `Etc/GMT-2` | `<+02>-2` |
 | `Etc/GMT-1` | `<+01>-1` |
+| `Etc/GMT+0` | `GMT0` |
 | `Etc/GMT-0` | `GMT0` |
 | `Etc/GMT0` | `GMT0` |
-| `Etc/GMT+0` | `GMT0` |
 | `Etc/GMT+1` | `<-01>1` |
 | `Etc/GMT+2` | `<-02>2` |
 | `Etc/GMT+3` | `<-03>3` |
