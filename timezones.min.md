@@ -25,7 +25,7 @@
 | `America/Creston-Whitehorse` | `MST7` |
 | `America/Danmarkshavn` | `GMT0` |
 | `America/Detroit-Toronto` | `EST5EDT,M3.2.0,M11.1.0` |
-| `America/Ensenada-Vancouver` | `PST8PDT,M3.2.0,M11.1.0` |
+| `America/Ensenada-Tijuana` | `PST8PDT,M3.2.0,M11.1.0` |
 | `America/Glace_Bay-Thule` | `AST4ADT,M3.2.0,M11.1.0` |
 | `America/Godthab-Scoresbysund` | `<-02>2<-01>,M3.5.0/-1,M10.5.0/0` |
 | `America/Havana` | `CST5CDT,M3.2.0/0,M11.1.0/1` |
@@ -101,9 +101,8 @@
 | `Canada/Eastern` | `EST5EDT,M3.2.0,M11.1.0` |
 | `Canada/Mountain` | `MST7MDT,M3.2.0,M11.1.0` |
 | `Canada/Newfoundland` | `NST3:30NDT,M3.2.0,M11.1.0` |
-| `Canada/Pacific` | `PST8PDT,M3.2.0,M11.1.0` |
+| `Canada/Pacific-Yukon` | `MST7` |
 | `Canada/Saskatchewan` | `CST6` |
-| `Canada/Yukon` | `MST7` |
 | `Chile/Continental` | `<-04>4<-03>,M9.1.6/24,M4.1.6/24` |
 | `Chile/EasterIsland` | `<-06>6<-05>,M9.1.6/22,M4.1.6/22` |
 | `Europe/Amsterdam-Zurich` | `CET-1CEST,M3.5.0,M10.5.0/3` |
