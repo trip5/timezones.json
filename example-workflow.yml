@@ -1,0 +1,68 @@
+# Downloads timezones.json from trip5/timezones.json and commits it to the dev branch.
+# A YAML comment starts with '#'. GitHub Actions ignores comments in workflow files.
+# This is a real workflow used by trip5/ehRadio
+name: Update timezones.json Automatically (to 'dev' Branch)
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout repository with deploy key
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Download and update timezones.json if changed
+        run: |
+          set -euo pipefail
+          TARGET_FILE="data/www/timezones.json"
+          TMP_FILE="${TARGET_FILE}.tmp"
+          URL="https://raw.githubusercontent.com/trip5/timezones.json/master/timezones.json"
+          mkdir -p data/www
+
+          # Fail fast on HTTP errors (e.g. 503 HTML pages) and retry transient failures.
+          curl -fSsL \
+            --connect-timeout 15 \
+            --max-time 120 \
+            --retry 5 \
+            --retry-delay 5 \
+            --retry-connrefused \
+            --retry-all-errors \
+            -o "$TMP_FILE" \
+            "$URL"
+
+          # Never promote a download unless it is real, non-empty JSON.
+          python3 -c 'import json, sys; d = json.load(open(sys.argv[1])); assert isinstance(d, dict) and len(d) > 0' "$TMP_FILE"
+
+          if [ ! -f "$TARGET_FILE" ] || ! cmp -s "$TARGET_FILE" "$TMP_FILE"; then
+            echo "timezones.json is new or has changed. Updating."
+            mv "$TMP_FILE" "$TARGET_FILE"
+          else
+            echo "timezones.json is unchanged."
+            rm "$TMP_FILE"
+          fi
+
+      - name: Force SSH remote for push
+        run: git remote set-url origin git@github.com:${{ github.repository }}.git
+
+      - name: Commit updated files if changed
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add data/www/timezones.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update JSON automatically from external sources"
+            git push origin HEAD:dev
+          else
+            echo "No changes to commit for JSON files."
+          fi
